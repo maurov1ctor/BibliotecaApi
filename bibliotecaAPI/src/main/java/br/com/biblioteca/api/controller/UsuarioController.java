@@ -46,10 +46,8 @@ public class UsuarioController {
 
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Usuario> deletarPorId(@PathVariable Long userId) {
-        Optional<Usuario> usuario = usuarioService.deletarPorId(userId);
-        return usuario.map(ResponseEntity::ok)
-                      .orElseGet(() -> ResponseEntity.notFound().build());
+    public void delete(@PathVariable Long userId){
+        usuarioService.delete(userId);
     }
 
 }

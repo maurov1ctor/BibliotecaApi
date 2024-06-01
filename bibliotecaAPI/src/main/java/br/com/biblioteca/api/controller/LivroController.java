@@ -22,10 +22,11 @@ public class LivroController {
         return livroService.listarTodos();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Livro> buscarPorId(@PathVariable Long id) {
-        Optional<Livro> livro = livroService.buscarPorId(id);
-        return livro.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+   @GetMapping("/{id}")
+    public ResponseEntity<Livro> procurarPorId(@PathVariable Long id) {
+        Optional<Livro> livro = livroService.procurarPorId(id);
+        return livro.map(ResponseEntity::ok)
+                        .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -39,8 +40,7 @@ public class LivroController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        livroService.deletar(id);
-        return ResponseEntity.noContent().build();
+    public void delete(@PathVariable Long id){
+        livroService.delete(id);
     }
 }

@@ -43,12 +43,8 @@ public class UsuarioService {
     return usuarioRepository.findById(userId);
    }
     //Delete 👍
-   public Optional<Usuario> deletarPorId(Long userId){
-    Optional<Usuario> usuario = usuarioRepository.findById(userId);
-    if (usuario.isPresent()){
+   public void delete(Long userId){
         usuarioRepository.deleteById(userId);
-    }
-    return usuario;
    }
 
 }

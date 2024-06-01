@@ -21,9 +21,9 @@ public class LivroService {
     }
 
     //Método para buscar buscar livro por id
-    public Optional<Livro> buscarPorId(Long id) {
-        return livroRepository.findById(id);
-    }
+     public Optional<Livro> procurarPorId(Long id) {
+    return livroRepository.findById(id);
+   }
 
     //Método para salvar dados do livro no banco de dados
     public Livro salvar(Livro livro) {
@@ -44,7 +44,8 @@ public class LivroService {
     }
 
     //Método para deletar livro
-    public void deletar(Long id) {
+    public void delete(Long id){
         livroRepository.deleteById(id);
+    };
     }
-}
+
