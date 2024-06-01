@@ -2,9 +2,11 @@ package br.com.biblioteca.api.controller;
 
 import br.com.biblioteca.api.dto.request.UsuarioRequestDTO;
 import br.com.biblioteca.api.dto.response.UsuarioResponseDTO;
+import br.com.biblioteca.api.model.Usuario;
 import br.com.biblioteca.api.service.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,14 +37,19 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Optional<UsuarioResponseDTO> findById(@PathVariable Long userId) {
-        return usuarioService.findById(userId);
+    @GetMapping("/{userId}")
+    public ResponseEntity<Usuario> procurarPorId(@PathVariable Long userId) {
+        Optional<Usuario> usuario = usuarioService.procurarPorId(userId);
+        return usuario.map(ResponseEntity::ok)
+                        .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long userId) {
-        usuarioService.deleteById(userId);
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Usuario> deletarPorId(@PathVariable Long userId) {
+        Optional<Usuario> usuario = usuarioService.deletarPorId(userId);
+        return usuario.map(ResponseEntity::ok)
+                      .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }

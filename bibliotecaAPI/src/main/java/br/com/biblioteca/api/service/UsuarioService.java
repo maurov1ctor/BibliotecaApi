@@ -39,14 +39,17 @@ public class UsuarioService {
    }
 
    //Método para listar usuário por Id
-   public Optional<UsuarioResponseDTO> findById(Long userId) {
-    return usuarioRepository.findById(userId)
-            .map(usuario -> new UsuarioResponseDTO(usuario.getUserId(), usuario.getNome(), usuario.getCpf(), usuario.getSenha()));
-}
+   public Optional<Usuario> procurarPorId(Long userId) {
+    return usuarioRepository.findById(userId);
+   }
     //Delete 👍
-   public void deleteById(Long userId) {
-    usuarioRepository.deleteById(userId);
-}
+   public Optional<Usuario> deletarPorId(Long userId){
+    Optional<Usuario> usuario = usuarioRepository.findById(userId);
+    if (usuario.isPresent()){
+        usuarioRepository.deleteById(userId);
+    }
+    return usuario;
+   }
 
 }
 

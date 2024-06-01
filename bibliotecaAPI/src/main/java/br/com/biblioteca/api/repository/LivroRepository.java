@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.biblioteca.api.model.Livro;
 
 @Repository
-public interface LivroRepository extends JpaRepository<Livro, Long>{
+public interface LivroRepository extends JpaRepository<Livro, Long> {
     
 }
-    
