@@ -28,11 +28,11 @@ public class EmprestimoLivro {
     private long anoPublicacao;
     
     @ManyToOne
-    @JoinColumn(name = "userId_TB_usuario")
+    @JoinColumn(name = "userId", nullable = false)
     private Usuario usuario;
     
     @ManyToOne
-    @JoinColumn(name = "bookId_TB_livro")
+    @JoinColumn(name = "bookId", nullable = false)
     private Livro livro;
 
     @Getter

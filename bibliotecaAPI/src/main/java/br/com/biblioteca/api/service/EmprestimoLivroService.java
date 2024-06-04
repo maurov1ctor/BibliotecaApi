@@ -29,7 +29,7 @@ public class EmprestimoLivroService {
     }
 
     // Regra para realizar um empréstimo de livro
-    public String realizarEmprestimo(Usuario usuario, Livro livro, LocalDate dataDeEntrega) {
+    public String realizarEmprestimo (Usuario usuario, Livro livro, LocalDate dataDeEntrega) {
         if (!verificarLimiteEmprestimos(usuario)) {
             return "Usuário atingiu o limite de empréstimos pendentes.";
         }
